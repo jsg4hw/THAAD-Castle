@@ -22,4 +22,4 @@ else:
 
 
 person = input ('Enter your name:' )
-print('fuck yourself ', person)
+print('Fuck yourself ', person)
