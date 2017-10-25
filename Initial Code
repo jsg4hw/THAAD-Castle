@@ -21,5 +21,5 @@ else:
     print ('Wrong! Thad Castle.')
 
 
-person = input ('Enter your name:' )
-print('Fuck yourself ', person)
+person = input ('Enter your name: ' )
+print('Why did you just put your name in,' + person + '? There\'s no high score in this game smh.')
