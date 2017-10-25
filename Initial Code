@@ -1,0 +1,25 @@
+Answer1 = input('Do you want to play THAAD Castle? Y or N?  ')
+
+import random
+RealAnswer = random.randint(1,2)
+if RealAnswer == 1:
+    RealAnswer = 'Thad Castle'
+elif RealAnswer == 2:
+    RealAnswer = 'THAAD Castle'
+
+if Answer1 == 'Y' :
+    Answer2 = input('Let\'s play. Thad Castle or THAAD Castle?   ')
+else: Answer2 = input('Too bad. Thad Castle or THAAD Castle?')
+
+if Answer2 == 'Thad Castle' and RealAnswer == 'Thad Castle':
+    print ('Good guess. It was Thad Castle.')
+elif Answer2 == 'Thad Castle' and RealAnswer == 'THAAD Castle':
+    print('Wrong! THAAD Castle.')
+elif Answer2 == 'THAAD Castle' and RealAnswer == 'THAAD Castle':
+    print ('Good guess. It was Thad Castle.')
+else:
+    print ('Wrong! Thad Castle.')
+
+
+person = input ('Enter your name:' )
+print('fuck yourself ', person)
