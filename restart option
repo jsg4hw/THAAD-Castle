@@ -1,0 +1,54 @@
+Answer1 = input('Do you want to play THAAD Castle? Y or N?  ')          #poses question, gathers answer
+
+count = 1                                                               #starts the count
+while True:                                                             #while loop for the restart option - if user restarts, code starts again here
+    while (count >= 1):                                                     #starts while loop to run as long as the user continues to get answer right
+        import random                                                       #generates randomly 1 or 2
+        RealAnswer = random.randint(1,2)                                    #sets RealAnswer to a number, corresponding to Thad or THAAD
+
+        if RealAnswer == 1:
+            RealAnswer = 'Thad Castle'
+        elif RealAnswer == 2:
+            RealAnswer = 'THAAD Castle'
+
+        if Answer1 == 'Y' and count == 1 :
+            Answer2 = input('Let\'s play. Thad Castle or THAAD Castle?   ')
+        elif count >= 2:
+            Answer2 = input('Round ' + str(count) + '. Thad Castle or THAAD Castle?')
+        else: Answer2 = input('Too bad. Thad Castle or THAAD Castle?    ')
+
+
+        if Answer2 == RealAnswer :
+            count = count + 1
+            print ('Good guess.')                                            #Compares user response to the answer, adds to count if it is correct.
+            print('Score: ' + str(count-1))                                  #Keeps running score, posts it.
+        #elif Answer2 == 'Thad Castle' and RealAnswer == 'THAAD Castle':
+         #   print('Wrong! THAAD Castle.')
+          #  print (count)
+        #elif Answer2 == 'THAAD Castle' and RealAnswer == 'THAAD Castle':     #
+         #   count = count + 1
+          #  print ('Good guess. It was Thad Castle.')
+           # print(count)"""
+        else :                                                                #wrong response won't add up, breaking the while loop
+            print ('Wrong! Game OVA!')
+            print('Your score is: ' + str(count-1))
+            break
+
+
+
+    person = input ('Enter your name: ')
+
+    while True:
+        restart = input('Go again? Y or N:')                        #allows for the option to rerun the code if you lose
+        if restart in ('Y','N'):
+            break
+        print('Invalid input.')
+    if restart == 'Y':
+        continue
+    else:
+        print('Thanks for playing, ' + person + '!')                 #if they decide to end, the game ends
+        break
+
+    """Next steps: 1. work on a nested loop for repeat winners so they don't get the same negative response if they keep winning
+    2. look into a Python UI Libary to generate some visuals, some UX
+    3. Option to restart"""
