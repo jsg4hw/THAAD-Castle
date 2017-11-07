@@ -1,0 +1,59 @@
+Answer1 = input('Do you want to play THAAD Castle? Y or N?  ')          #poses question, gathers answer
+
+high_score=0
+count = 1
+rnd = 1
+while True:                                                             #while loop for the restart option - if user restarts, code starts again here
+    while (count >= 1):                                                     #starts while loop to run as long as the user continues to get answer right
+
+        import random                                                       #generates randomly 1 or 2
+        RealAnswer = random.randint(1,2)                                    #sets RealAnswer to a number, corresponding to Thad or THAAD
+
+        if RealAnswer == 1:
+            RealAnswer = 'Thad Castle'
+        elif RealAnswer == 2:
+            RealAnswer = 'THAAD Castle'
+
+        if Answer1 == 'Y' or 'y' and rnd == 1 :
+            Answer2 = input('Let\'s play. Thad Castle or THAAD Castle?   ')
+        elif rnd >= 2:
+            Answer2 = input('Round ' + str(rnd) + '. Thad Castle or THAAD Castle?    ')
+        else:
+            Answer2 = input('Too bad. Thad Castle or THAAD Castle?    ')
+
+        if Answer2 == RealAnswer:
+            count += 1
+            if high_score < count:
+                high_score = count
+
+            print ('Good guess.')                                            #Compares user response to the answer, adds to count if it is correct.
+            print('Score: ' + str(count-1))
+            print('Highscore: ' + str(high_score-1))
+
+
+
+        else:
+            if high_score < count:
+                high_score = count
+            print('Wrong! Game OVA!')
+            print('Score: ' + str(count - 1))
+            print('High score is: ' + str(high_score-1))
+            person = input('Enter your name: ')
+
+            break
+            
+
+    while True:
+        count = 1
+        restart = input('Go again? Y or N:')                        #allows for the option to rerun the code if you lose
+        if restart in ('Y','N'):
+            break
+        print('Invalid input.')
+    if restart == 'Y':
+        continue
+    else:
+        print('Thanks for playing, ' + person + '!')
+        #if they decide to end, the game ends
+        break
+
+    

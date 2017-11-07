@@ -1,0 +1,61 @@
+Begin = input('Press Enter to begin.  ')          #starts the code
+
+#begins highscore, normal score (count) and the round number 
+high_score=0
+count = 1
+rnd = 1
+
+while True:                                                             #while loop for the restart option - if user restarts, code starts again here
+    while (count >= 1):                                                     #starts while loop to run as long as the user continues to get answer right
+
+        import random                                                       #generates randomly 1 or 2
+        RealAnswer = random.randint(1,2)                                    #sets RealAnswer to a number, corresponding to Thad or THAAD
+
+        if RealAnswer == 1:
+            RealAnswer = 'Thad Castle'
+        elif RealAnswer == 2:
+            RealAnswer = 'THAAD Castle'
+
+        if rnd == 1 :
+            Answer2 = input('Let\'s play. Thad Castle or THAAD Castle?   ')
+        elif rnd >1:
+            Answer2 = input('Round ' + str(rnd) + '. Thad Castle or THAAD Castle?    ')
+        #rnd will only = 0 if user answers incorrectly and decides to not play anymore
+        elif rnd ==0:
+            break
+        #in the event that the user answer matches the correct answer
+        if Answer2 == RealAnswer:
+            #1 is added to the count, and you go to the next round (+1)
+            count += 1
+            rnd += 1
+            #if the current count is higher than the previously stored highscore, then the highscore is reassigned the higher value
+            if high_score < count:
+                high_score = count
+            print ('Good guess.')                                            #Compares user response to the answer, adds to count if it is correct.
+            print('Score: ' + str(count-1))
+            print('Highscore: ' + str(high_score-1))
+            #if user is getting things right, it will hit the continue line and restart with new random answer
+            continue
+
+        #in the event the user answers incorrectly
+        else:
+            #round number resets to 0, allowing the user to break the loops and exit
+            rnd = 0
+            if high_score < count:
+                high_score = count
+            print('Wrong! Game OVA!')
+            print('Score: ' + str(count - 1))
+            print('High score is: ' + str(high_score-1))
+            person = input('Enter your name: ')
+            restart = input('Go again? Y or N: ')  # allows for the option to rerun the code if you lose
+            #if you want to restart, sets round to 1, count back to 1 and code restarts
+            if restart == 'Y':
+                rnd = 1
+                count = 1
+                continue
+            #if user does not answer Y, game ends
+            else:
+                print('Thanks for playing, ' + str(person) + '!')
+                # if they decide to end, the game ends
+                #break
+            break
