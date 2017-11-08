@@ -5,12 +5,20 @@ high_score=0
 count = 0
 rnd = 1
 
+#list of names of highscorers
+listname = ['JC']
+#list of highscores
+listsc = [0]
 
-hisclist= [0]
-#hisc.append(0)
-#alltime=hisc.read()
-#highscore_num=int(alltime)
-
+#starts the pickle process, saves the two lists to the diskdrive
+import pickle
+try:
+    # opens the disk drive to retrieve the previous highscores
+    with open('lists.pickle', 'rb') as f:
+        listname = pickle.load(f)
+        listsc = pickle.load(f)
+except:
+    listsc = 0
 
 while True:                                                             #while loop for the restart option - if user restarts, code starts again here
     while (count >= 0):                                                     #starts while loop to run as long as the user continues to get answer right
@@ -36,18 +44,12 @@ while True:                                                             #while l
             count += 1
             rnd += 1
             #if the current count is higher than the previously stored highscore, then the highscore is reassigned the higher value
-            if count > max(hisclist):
-                hisclist.clear()
-                hisclist.append(count)
+            if count > high_score:
+                high_score = count
 
-            #if high_score < count:
-             #   high_score = count
-              #  if high_score > alltime:
-               #     hisc.write(str(high_score))
-                #    highscore_num=high_score
             print ('Good guess.')                                            #Compares user response to the answer, adds to count if it is correct.
             print('Score: ' + str(count))
-            print('Highscore: ' + str(hisclist))
+            print('Highscore: ' + str(high_score))
             #if user is getting things right, it will hit the continue line and restart with new random answer
             continue
 
@@ -55,14 +57,20 @@ while True:                                                             #while l
         else:
             #round number resets to 0, allowing the user to break the loops and exit
             rnd = 0
-            if count > max(hisclist):
-                hisclist.clear()
-                hisclist.append(count)
 
             print('Wrong! Game OVA!')
-            print('Score: ' + str(count))
-            print('High score is: ' + str(hisclist))
             person = input('Enter your name: ')
+            #finds the highest score recorded, compares to current score. Replaces it with current highscore at position 0,
+            # as well as the corresponding name of the user at position 0
+            if high_score >= max(listsc):
+                listname.insert(0,person)
+                listsc.insert(0,high_score)
+                #saves the new highscore and highscorer to the disk drive
+                with open('lists.pickle', 'wb') as f:
+                    pickle.dump(listname,f)
+                    pickle.dump(listsc,f)
+            print('Score: ' + str(count))
+            print('High score: ' + str(listsc[0]) + ' - ' + listname[0])
             restart = input('Go again? Y or N: ')  # allows for the option to rerun the code if you lose
             #if you want to restart, sets round to 1, count back to 1 and code restarts
             if restart == 'Y':
@@ -75,4 +83,3 @@ while True:                                                             #while l
                 # if they decide to end, the game ends
                 #break
             break
-        hisc.close()
